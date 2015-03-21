@@ -404,6 +404,7 @@ file_client: local
 file_roots:
   base:
     - /srv/salt
+    - /srv/formulas/hostsfile-formula
     - /srv/formulas/apache-formula
     - /srv/formulas/mysql-formula
     - /srv/formulas/php-formula

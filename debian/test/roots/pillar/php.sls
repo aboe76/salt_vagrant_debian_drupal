@@ -11,7 +11,7 @@ php:
       defaults:
         PHP:
           expose_php: 'Off'
-          allow_url_fopen: 'Off'
+          allow_url_fopen: 'On'
           display_errors: 'Off'
           openssl.cafile: 'etc/ssl/certs/ca-certificates.crt'
         Session:

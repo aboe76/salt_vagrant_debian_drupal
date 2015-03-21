@@ -1,5 +1,6 @@
 base:
   '*':
+    - hostsfile
     - apache
     - apache.php5
     - apache.modules
