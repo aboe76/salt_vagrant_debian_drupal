@@ -38,7 +38,7 @@ apache:
           AllowOverride: None
   
   register-site:
-    debian.home.lan:
+    drupal:
       name: 'debian.home.lan'
       state: enabled
 
