@@ -5,8 +5,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "debian" do |debian|
     debian.vm.box = "baremettle/debian-7.5"
 
-    debian.vm.network :public_network, :dev => 'br0', :mode => 'bridge'
-
     debian.vm.synced_folder 'roots/salt', '/srv/salt'
     debian.vm.synced_folder 'roots/pillar', '/srv/pillar'
     debian.vm.synced_folder '../formulas', '/srv/formulas'

@@ -10,6 +10,3 @@
 [submodule "debian/formulas/mysql-formula"]
 	path = debian/formulas/mysql-formula
 	url = https://github.com/saltstack-formulas/mysql-formula.git
-[submodule "debian/formulas/hostsfile-formula"]
-	path = debian/formulas/hostsfile-formula
-	url = https://github.com/saltstack-formulas/hostsfile-formula.git

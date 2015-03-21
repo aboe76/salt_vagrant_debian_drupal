@@ -1,6 +1,6 @@
 drupal:
   lookup:
-    name: debian.home.lan
+    name: drupal
     version: '8.0.0-beta7'
     source_hash: 'md5=b730108fbdd33ffe57fb94e94d293ebe'
     user: 'vagrant'
