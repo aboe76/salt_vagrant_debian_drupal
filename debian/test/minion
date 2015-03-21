@@ -624,6 +624,5 @@ file_roots:
 ############################################
 mine_functions:
       network.interfaces: []
-      network.ip_addrs:
-        - eth1
+      network.ip_addrs: []
 mine_interval: 2
