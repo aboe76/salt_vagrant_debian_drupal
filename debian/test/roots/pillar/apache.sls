@@ -37,11 +37,6 @@ apache:
           Allow: from all      # For apache < 2.4
           AllowOverride: None
   
-  register-site:
-    drupal:
-      name: 'debian.home.lan'
-      state: enabled
-
   modules:
     enabled:
       - ssl
