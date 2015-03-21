@@ -1,9 +1,8 @@
 base:
   '*':
-    - apache
+    - apache.debian_full
     - apache.php5
     - apache.modules
-    - apache.vhosts.standard
     - mysql
     - mysql.client
     - php.ng

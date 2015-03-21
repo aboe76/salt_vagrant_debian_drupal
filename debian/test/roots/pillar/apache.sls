@@ -11,7 +11,7 @@ apache:
   
   # ``apache.vhosts`` formula additional configuration:
   sites:
-    000-default: # must be unique; used as an ID declaration in Salt.
+    debian.home.lan: # must be unique; used as an ID declaration in Salt.
       template_file: salt://apache/vhosts/standard.tmpl # or redirect.tmpl or proxy.tmpl
 
       interface: '*'
@@ -36,6 +36,11 @@ apache:
           Order: allow,deny    # For Apache < 2.4
           Allow: from all      # For apache < 2.4
           AllowOverride: None
+  
+  register-site:
+    debian.home.lan:
+      name: 'debian.home.lan'
+      state: enabled
 
   modules:
     enabled:
