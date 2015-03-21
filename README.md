@@ -2,6 +2,12 @@
 
 This is a setup using vagrant libvirt to deploy drupal with saltstack
 
-# Setup see vagrant-libvirt.txt
+Setup 
+-----
 
-# 
+See vagrant-libvirt.txt
+
+Code
+----
+
+All code is in debian folder
