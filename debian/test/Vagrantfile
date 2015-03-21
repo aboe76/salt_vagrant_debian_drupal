@@ -1,0 +1,23 @@
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.define "debian" do |debian|
+    debian.vm.box = "baremettle/debian-7.5"
+    debian.vm.synced_folder 'roots/salt', '/srv/salt'
+    debian.vm.synced_folder 'roots/pillar', '/srv/pillar'
+    debian.vm.synced_folder '../formulas', '/srv/formulas'
+    debian.vm.synced_folder '../_modules', '/srv/salt/_modules'
+    debian.vm.synced_folder '../_states', '/srv/salt/_states'
+
+    debian.vm.provision :salt do |salt|
+      salt.minion_config = 'minion'
+      salt.run_highstate = true
+      salt.verbose = true
+
+      if ENV['salt_install_args']
+        salt.install_args = ENV['salt_install_args']
+      end
+    end
+  end
+end

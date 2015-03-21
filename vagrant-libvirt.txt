@@ -1,0 +1,87 @@
+# Most it taken from the this page
+# https://github.com/adrahon/vagrant-kvm/wiki/Install_on_ArchLinux
+
+## Step 1:
+
+# Add /etc/polkit-1/rules.d/10.virt.rules with the following contents.
+
+polkit.addRule(function(action, subject) {
+  polkit.log("action=" + action);
+  polkit.log("subject=" + subject);
+  var now = new Date();
+  polkit.log("now=" + now)
+  if ((action.id == "org.libvirt.unix.manage"
+        || action.id == "org.libvirt.unix.monitor")
+      && subject.isInGroup("virt")) {
+    return polkit.Result.YES;
+  }
+  return null;
+});
+
+$ sudo systemctl restart polkit.service
+
+$ sudo groupadd virt
+$ sudo usermod -a -G virt ~~username~~
+
+# logout/login !!!!
+
+## Step 2:
+
+# install vagrant
+# pacman -S vagrant
+
+## step 3: install vagrant libvirt plugin (this is somewhat troublesome in arch)
+
+# install vagrant-libvirt plugin (add libvirt support)
+$ sudo mv /opt/vagrant/embedded/lib/libcurl.so{.backup,}
+$ sudo mv /opt/vagrant/embedded/lib/libcurl.so.4{.backup,}
+$ sudo mv /opt/vagrant/embedded/lib/libcurl.so.4.3.0{.backup,}
+$ sudo mv /opt/vagrant/embedded/lib/pkgconfig/libcurl.pc{.backup,}
+
+$ CONFIGURE_ARGS="with-libvirt-include=/usr/include/libvirt with-libvirt-lib=/usr/lib" vagrant plugin install vagrant-libvirt
+
+$ sudo mv /opt/vagrant/embedded/lib/libcurl.so{.backup,}
+$ sudo mv /opt/vagrant/embedded/lib/libcurl.so.4{.backup,}
+$ sudo mv /opt/vagrant/embedded/lib/libcurl.so.4.3.0{.backup,}
+$ sudo mv /opt/vagrant/embedded/lib/pkgconfig/libcurl.pc{.backup,}
+
+## step 4:
+
+# install vagrant-mutate plugin (convert to libvirt)
+$ vagrant install vagrant-mutate
+
+## step 5:
+
+# install vagrant-rekey-ssh (secure ssh key)
+$ vagrant plugin install vagrant-rekey-ssh
+
+
+#### You're Done know ###
+
+
+
+
+
+
+
+## for fun and test:
+
+# Download box fedora has a nice libvirt image
+$ vagrant box add jimmidyson/fedora21-atomic --provider libvirt
+
+# if necessary mutate to libvirt
+$ vagrant mutate boxname libvirt
+
+# create dir
+$ mkdir ~/vagrant/fedora
+$ cd ~/vagrant/fedora
+$ vagrant init jimmidyson/fedora21-atomic
+$ vagrant up
+$ vagrant ssh
+$ # passwd root
+$ # systemctl enable cockpit;systemctl start cockpit
+
+# now you can use your browser and login with root user
+# https://<ip>:9090
+
+# have fun
