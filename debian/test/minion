@@ -619,10 +619,3 @@ file_roots:
 ############################################
 # Which returner(s) will be used for minion's result:
 #return: mysql
-
-######      Mine Function             ######
-############################################
-mine_functions:
-      network.interfaces: []
-      network.ip_addrs: []
-mine_interval: 2
