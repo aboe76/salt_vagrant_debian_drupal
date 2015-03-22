@@ -6,11 +6,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     debian.vm.box = "baremettle/debian-7.5"
     debian.vm.hostname = "debian.home.lan"
 
-    debian.vm.synced_folder 'roots/salt', '/srv/salt'
-    debian.vm.synced_folder 'roots/pillar', '/srv/pillar'
-    debian.vm.synced_folder '../formulas', '/srv/formulas'
-    debian.vm.synced_folder '../_modules', '/srv/salt/_modules'
-    debian.vm.synced_folder '../_states', '/srv/salt/_states'
+    debian.vm.synced_folder 'roots/salt', '/srv/salt', type: '9p'
+    debian.vm.synced_folder 'roots/pillar', '/srv/pillar', type: '9p'
+    debian.vm.synced_folder '../formulas', '/srv/formulas', type: '9p'
+    debian.vm.synced_folder '../_modules', '/srv/salt/_modules', type: '9p'
+    debian.vm.synced_folder '../_states', '/srv/salt/_states', type: '9p'
 
     debian.vm.provision :salt do |salt|
       salt.minion_config = 'minion'
